@@ -5,6 +5,8 @@ var logger = require('morgan');
 
 const cors = require('cors');
 
+const mongoose = require('mongoose');
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -13,6 +15,15 @@ var app = express();
 app.use(cors());
 
 app.use(logger('dev'));
+
+mongoose.connect('mongodb://0.0.0.0/Air-Quality', {useNewUrlParser: true, useUnifiedTopology: true}, (err)=>{
+  if(err){
+    console.log(err)
+    return
+  }else{
+    console.log('connecting to DB .....')
+  }
+})
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
