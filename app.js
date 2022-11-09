@@ -23,7 +23,10 @@ mongoose.connect('mongodb://0.0.0.0/Air-Quality', {useNewUrlParser: true, useUni
   }else{
     console.log('connecting to DB .....')
   }
-})
+});
+
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
